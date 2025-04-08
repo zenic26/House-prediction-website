@@ -1,0 +1,27 @@
+{
+    "id": "69856C0B",
+    "path": "D:/Housing_prediction/Test/model_training.R",
+    "project_path": "model_training.R",
+    "type": "r_source",
+    "hash": "4268062260",
+    "contents": "",
+    "dirty": false,
+    "created": 1744058025800.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "tempName": "Untitled1",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "71,0",
+        "scrollLine": "53"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1744058060,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1744058060566,
+    "read_only": false,
+    "read_only_alternatives": []
+}

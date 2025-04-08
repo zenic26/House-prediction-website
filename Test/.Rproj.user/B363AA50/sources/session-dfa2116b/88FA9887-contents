@@ -1,0 +1,66 @@
+# Load required libraries
+library(readr)
+library(dplyr)
+library(randomForest)
+
+# Load the dataset
+data <- read_csv("D:/Housing_prediction/Dataset/housing.csv")
+cat("✅ Data loaded!\n")
+
+# Clean NA values
+data <- data %>% na.omit()
+cat("✅ Removed rows with NA values!\n")
+
+# Define feature and target columns
+feature_columns <- c(
+  "number of bedrooms", "number of bathrooms", "living area", "lot area",
+  "number of floors", "waterfront present", "number of views",
+  "condition of the house", "grade of the house",
+  "Area of the house(excluding basement)", "Area of the basement",
+  "Built Year", "Renovation Year", "Postal Code", "Lattitude", "Longitude",
+  "living_area_renov", "lot_area_renov", "Number of schools nearby",
+  "Distance from the airport"
+)
+
+target_column <- "Price"
+
+# Select features and target
+data <- data %>% select(all_of(c(feature_columns, target_column)))
+
+# Split data
+set.seed(42)
+sample_indices <- sample(nrow(data), 0.8 * nrow(data))
+train_data <- data[sample_indices, ]
+test_data <- data[-sample_indices, ]
+
+train_x <- train_data[, feature_columns]
+train_y <- train_data[[target_column]]
+
+test_x <- test_data[, feature_columns]
+test_y <- test_data[[target_column]]
+
+# Train the model
+model <- randomForest(x = train_x, y = train_y, ntree = 100)
+cat("✅ Model trained!\n")
+
+# Predict and evaluate
+predictions <- predict(model, test_x)
+mae <- mean(abs(predictions - test_y))
+rmse <- sqrt(mean((predictions - test_y)^2))
+r2 <- 1 - sum((predictions - test_y)^2) / sum((test_y - mean(test_y))^2)
+
+# Print performance
+cat("\n📊 Model Evaluation:\n")
+cat("✅ MAE:", round(mae, 2), "\n")
+cat("✅ RMSE:", round(rmse, 2), "\n")
+cat("✅ R-squared:", round(r2, 4), "\n")
+cat("✅ Accuracy (R-squared %):", round(r2 * 100, 2), "%\n")
+
+# Save the model
+saveRDS(model, "D:/Housing_prediction/house_price_model.rds")
+
+# Save default feature values (for missing inputs later)
+default_values <- data %>% select(all_of(feature_columns)) %>% summarise_all(mean)
+write_csv(default_values, "D:/Housing_prediction/default_feature_values.csv")
+
+cat("✅ Model and default values saved!\n")

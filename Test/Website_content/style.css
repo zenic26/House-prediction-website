@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 5000px;
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin: 10px 0 5px;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  #error, #result {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  #result p {
+    font-size: 18px;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+  
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .price-table th,
+  .price-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  .price-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .price-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+  
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+  }
+  
+  .price-table th,
+  .price-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+  
+  .price-table th {
+    background-color: #007bff;
+    color: white;
+    width: 90px;
+  }
+  
+  .price-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  

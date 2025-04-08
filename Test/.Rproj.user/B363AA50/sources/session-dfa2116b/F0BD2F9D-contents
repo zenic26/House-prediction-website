@@ -1,0 +1,59 @@
+library(plumber)
+library(dplyr)
+library(readr)
+library(randomForest)
+
+# Load model and defaults
+model <- readRDS("D:/Housing_prediction/house_price_model.rds")
+default_values <- read_csv("D:/Housing_prediction/default_feature_values.csv")
+
+#* Predict house price
+#* @param bedrooms
+#* @param bathrooms
+#* @param living_area
+#* @param lot_area
+#* @param floors
+#* @param waterfront
+#* @param views
+#* @param condition
+#* @param grade
+#* @param area_excl_bsmt
+#* @param bsmt_area
+#* @param built_year
+#* @param renov_year
+#* @param postal_code
+#* @param lat
+#* @param long
+#* @param living_area_renov
+#* @param lot_area_renov
+#* @param schools_nearby
+#* @param airport_dist
+#* @get /predict
+function(bedrooms = NA, bathrooms = NA, living_area = NA, lot_area = NA,
+         floors = NA, waterfront = NA, views = NA, condition = NA, grade = NA,
+         area_excl_bsmt = NA, bsmt_area = NA, built_year = NA, renov_year = NA,
+         postal_code = NA, lat = NA, long = NA, living_area_renov = NA,
+         lot_area_renov = NA, schools_nearby = NA, airport_dist = NA) {
+  
+  input_values <- data.frame(
+    `number of bedrooms` = as.numeric(bedrooms),
+    `number of bathrooms` = as.numeric(bathrooms),
+    `living area` = as.numeric(living_area),
+    `lot area` = as.numeric(lot_area),
+    `number of floors` = as.numeric(floors),
+    `waterfront present` = as.numeric(waterfront),
+    `number of views` = as.numeric(views),
+    `condition of the house` = as.numeric(condition),
+    `grade of the house` = as.numeric(grade),
+    `Area of the house(excluding basement)` = as.numeric(area_excl_bsmt),
+    `Area of the basement` = as.numeric(bsmt_area),
+    `Built Year` = as.numeric(built_year),
+    `Renovation Year` = as.numeric(renov_year),
+    `Postal Code` = as.numeric(postal_code),
+    `Lattitude` = as.numeric(lat),
+    `Longitude` = as.numeric(long),
+    `living_area_renov` = as.numeric(living_area_renov),
+    `lot_area_renov` = as.numeric(lot_area_renov),
+    `Number of schools nearby` = as.numeric(schools_nearby),
+    `Distance from the airport` = as.numeric(airport_dist)
+
